@@ -58,12 +58,17 @@
 
     function Text({
       as = 'span',
+      variant = 'default',
+      className,
       children,
       ...props
     }) {
       return React.createElement(
         as,
-        props,
+        {
+          className: `${textVariants[variant]} ${className}`,
+          ...props
+        },
         children
       )
 
@@ -72,6 +77,7 @@
     function App() {
       return (
         <main className="py-28 px-16">
+          <Text variant="blast" >Hello World</Text>
         </main>
       )
     }
