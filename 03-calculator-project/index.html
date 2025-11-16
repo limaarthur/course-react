@@ -39,7 +39,6 @@
 
     body {
       font-family: 'Rubik', sans-serif;
-
     }
   </style>
 </head>
@@ -54,7 +53,7 @@
   <script type="text/babel">
     const textVariants = {
       default: 'text-xl',
-      muted: 'text-xl text-(--text-secondary)',
+      muted: 'text-xl text-[var(--text-secondary)]',
       heading: 'text-2xl',
       blast: 'text-3xl'
     }
@@ -124,12 +123,45 @@
       )
     }
 
+    function CalculatorDisplay({ operation, result }) {
+      return (
+        <div className={`
+            flex flex-col gap-2 px-[1.375rem]
+            cursor-default select-none
+            `}>
+          <Text
+            as="div"
+            variant="muted"
+            className="flex items-center justify-end"
+          >
+            {operation}
+          </Text>
+          <div className="{`
+              flex items-center justify-between
+              `}">
+            <Text variant="muted">=</Text>
+            <Text variant="blast">{result}</Text>
+          </div>
+        </div>
+      )
+    }
+
+    function Calculator() {
+      return (
+        <Card className={`
+          flex flex-col gap-[1.625rem] w-[22.25rem]
+          pt-14 px-8 pb-8
+          `}
+        >
+          <CalculatorDisplay operation="1 + 1" result="2" />
+        </Card>
+      )
+    }
+
     function App() {
       return (
         <main className="py-28 px-4">
-          <Card>
-            Testando card
-          </Card>
+          <Calculator />
         </main>
       )
     }
