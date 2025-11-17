@@ -43,7 +43,7 @@
   </style>
 </head>
 
-<body class="text-[var(--text)]">
+<body class="text-[var(--text)] bg-[linear-gradient(180deg,#807ECE_0%,#807ECE_100%)]">
   <div id="root" />
 
   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
@@ -191,7 +191,7 @@
 
     function OperationHistory() {
       return (
-        <Card className="py-10 px-8">
+        <Card className="w-full py-10 px-8">
           <Text
             as="h1"
             variant="heading"
@@ -211,7 +211,13 @@
 
     function App() {
       return (
-        <main className="py-28 px-4">
+        <main
+          className={`
+          py-28 px-4 sm:px-10
+          flex flex-col sm:flex-row
+          items-center sm:items-stretch
+          gap-2
+          `}>
           <Calculator />
           <OperationHistory />
         </main>
