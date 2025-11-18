@@ -178,6 +178,10 @@
     ];
 
     function Calculator() {
+      function handleInputClick(input) {
+        console.log(input)
+      }
+
       return (
         <Card className={`
           flex flex-col gap-[1.625rem] w-[22.25rem]
@@ -194,6 +198,7 @@
                     key={button.input}
                     className={button.className || "w-16 h-16"}
                     variant={button.variant}
+                    onClick={() => handleInputClick(button.input)}
                   >
                     {button.input}
                   </Button>
