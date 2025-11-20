@@ -182,11 +182,30 @@
       const [result, setResult] = React.useState('');
 
       function handleInputClick(input) {
+        if (input === "C") {
+          setOperation("");
+          setOperation("");
+          return;
+        }
+
+        if (input === "CE") {
+          setOperation("")
+          setOperation(operation.slice(0, -1));
+          return;
+        }
 
         if (input === "=") {
           const operationResult = eval(operation.replace(/,/g, '.'));
           const parsedResult = operationResult.toString()?.replace(/\./g, ',')
           setResult(parsedResult);
+          return;
+        }
+
+        if (result) {
+          setOperation(isNaN(input)
+            ? `${result}${input}`
+            : input)
+          setResult("");
           return;
         }
 
@@ -196,7 +215,7 @@
         }
 
         setOperation(
-          `${operation}${operation.endsWith(',') ? "" : " "}${input}`
+          `${operation}${input}`
         );
       }
 
