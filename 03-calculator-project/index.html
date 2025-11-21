@@ -182,6 +182,11 @@
       const [history, setHistory] = React.useState([]);
       const historyStorageKey = 'history';
 
+      React.useEffect(() => {
+        const savedHistory = localStorage.getItem(historyStorageKey);
+        setHistory(JSON.parse(savedHistory || '[]'))
+      }, []);
+
       function updateHistory(operation, parsedResult) {
         setHistory((prev) => {
           const updatedHistory = [...prev, `${operation}=${parsedResult}`
