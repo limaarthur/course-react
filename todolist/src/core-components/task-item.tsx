@@ -10,6 +10,7 @@ import CheckIcon from "../assets/icons/check.svg?react";
 import InputText from "../components/input-text";
 import { TaskState, type Task } from "../models/task";
 import { cx } from "class-variance-authority";
+import useTask from "../hooks/use-task";
 
 interface TaskItemProps {
   task: Task;
@@ -20,7 +21,8 @@ export default function TaskItem({task}: TaskItemProps) {
     task?.state === TaskState.Creating
   );
 
-  const [taskTitle, setTaskTitle] = React.useState("");
+  const [taskTitle, setTaskTitle] = React.useState(task.title || "");
+  const {updateTask} = useTask();
 
   function handlieEditTask() {
     setIsEditing(true);
@@ -36,8 +38,9 @@ export default function TaskItem({task}: TaskItemProps) {
 
   function handleSaveTask(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log({id: task.id, title: taskTitle});
-    // chamada para a função de atulizar
+
+    updateTask(task.id, {title: taskTitle});
+
     setIsEditing(false);
   }
 
@@ -75,6 +78,7 @@ export default function TaskItem({task}: TaskItemProps) {
       ) : (
         <form onSubmit={handleSaveTask} className="flex items-center gap-4">
           <InputText 
+            value={taskTitle}
             className="flex-1" 
             onChange={handleChangeTaskTitle} 
             required autoFocus 
