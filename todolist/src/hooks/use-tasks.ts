@@ -7,6 +7,6 @@ export default function useTasks() {
   return {
     tasks,
     tasksCount: tasks.length,
-    concludedTasksCount: tasks.filter((tasks) => task.concluded).length
+    concludedTasksCount: tasks.filter((task) => task.concluded).length
   }
 }
